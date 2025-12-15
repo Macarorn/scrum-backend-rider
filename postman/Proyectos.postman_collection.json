@@ -1,0 +1,106 @@
+{
+  "info": {
+    "name": "Proyectos API",
+    "_postman_id": "proyectos-collection",
+    "description": "Colección para probar endpoints de proyectos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar proyectos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/proyectos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api","proyectos"]
+        }
+      }
+    },
+    {
+      "name": "Obtener proyecto por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/proyectos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api","proyectos","1"]
+        }
+      }
+    },
+    {
+      "name": "Listar proyectos por líder",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/proyectos/leader/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api","proyectos","leader","1"]
+        }
+      }
+    },
+    {
+      "name": "Crear proyecto",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Proyecto desde Postman\",\n  \"descripcion\": \"Descripción\",\n  \"id_lider\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/proyectos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api","proyectos"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar proyecto",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Proyecto actualizado\",\n  \"descripcion\": \"Descripción actualizada\",\n  \"id_lider\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/proyectos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api","proyectos","1"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar proyecto",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/proyectos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api","proyectos","1"]
+        }
+      }
+    }
+  ]
+}
