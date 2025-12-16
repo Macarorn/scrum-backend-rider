@@ -27,6 +27,7 @@ router.use("/usuario-proyectos", usuarioProyectoRouter);
 // Rutas relación usuario-tarea
 router.use("/usuario-tareas", usuarioTareaRouter);
 
+// Rutas de usuario
 router.use("/usuario", usuarioRouter);
 
 export default router;

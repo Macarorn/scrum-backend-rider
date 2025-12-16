@@ -61,59 +61,20 @@ export const updateUsuario = async (req, res) => {
   }
 };
 
+// Eliminar un usuario
 export const deleteUsuario = async (req, res) => {
   const { id } = req.params;
-  
   try {
-    // Iniciar transacción para asegurar consistencia
-    await conn.beginTransaction();
-    
-    // 1. Eliminar de usuario_tarea primero
-    await conn.execute(
-      "DELETE FROM usuario_tarea WHERE id_usuario = ?",
-      [id]
-    );
-    
-    // 2. Eliminar de usuario_proyecto
-    await conn.execute(
-      "DELETE FROM usuario_proyecto WHERE id_usuario = ?",
-      [id]
-    );
-    
-    // 3. Si el usuario es líder de proyectos, reasignar o eliminar proyectos
-    // Opción A: Reasignar a otro usuario (ej: usuario con ID 1)
-    await conn.execute(
-      "UPDATE proyecto SET id_lider = 1 WHERE id_lider = ?",
-      [id]
-    );
-    
-    // Opción B: Eliminar proyectos donde es líder (si quieres eliminar todo)
-    // await conn.execute(
-    //   "DELETE FROM proyecto WHERE id_lider = ?",
-    //   [id]
-    // );
-    
-    // 4. Finalmente eliminar el usuario
     const [result] = await conn.execute(
       "DELETE FROM usuario WHERE id_usuario = ?",
       [id]
     );
-    
-    // Confirmar transacción
-    await conn.commit();
-    
     if (result.affectedRows === 0) {
       res.status(404).json({ message: "Usuario no encontrado" });
     } else {
-      res.status(200).json({ message: "Usuario y todos sus datos relacionados eliminados" });
+      res.status(200).json({ message: "Usuario eliminado" });
     }
-    
   } catch (error) {
-    // Revertir transacción en caso de error
-    await conn.rollback();
-    res.status(500).json({ 
-      error: error.message,
-      details: "No se pudo eliminar el usuario debido a restricciones de integridad referencial" 
-    });
+    res.status(500).json({ error: error.message });
   }
 };
