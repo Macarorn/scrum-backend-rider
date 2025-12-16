@@ -5,6 +5,7 @@ import tareasRouter from "./routes/tareas.routes.js";
 import proyectosRouter from "./routes/proyectos.routes.js";
 import usuarioProyectoRouter from "./routes/usuarioProyecto.routes.js";
 import usuarioTareaRouter from "./routes/usuarioTarea.routes.js";
+import usuarioRouter from "./routes/usuario.routes.js";
 
 const router = express.Router();
 
@@ -17,7 +18,6 @@ router.use("/historias", historiasRouter);
 // Rutas de tareas
 router.use("/tareas", tareasRouter);
 
-export default router;
 // Rutas de proyectos
 router.use("/proyectos", proyectosRouter);
 
@@ -27,3 +27,6 @@ router.use("/usuario-proyectos", usuarioProyectoRouter);
 // Rutas relación usuario-tarea
 router.use("/usuario-tareas", usuarioTareaRouter);
 
+router.use("/usuario", usuarioRouter);
+
+export default router;
